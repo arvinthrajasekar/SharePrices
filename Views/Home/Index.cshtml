@@ -10,11 +10,14 @@
 <head>
     <meta name="viewport" content="width=device-width"/>
     <title>Index</title>
+
+    
+
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
     <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-    <link href="~/Content/site.css" rel="stylesheet" />
+   
 </head>
 <body>
 <div class="col-md-12">  
@@ -36,24 +39,42 @@
             </div>  
         </div>  
     </div><hr />  
-    <table id="tblStocks" class="table table-bordered table-striped table-responsive table-hover">  
+    <!--<table id="tblStocks" class="table table-bordered table-striped table-responsive table-hover">  
         <thead>  
             <tr>  
                 <th align="left" class="productth">Stock Name</th>  
                 <th align="left" class="productth">Stock Price</th>  
-               
             </tr>  
         </thead>  
         <tbody></tbody>  
-    </table>  
+    </table>  -->
 </div> 
 </body>
 </html>
-@section Scripts    
-{
-    
-    <script type="text/javascript">
-        $(document).ready(function () {
+<script type="text/javascript">
+       $(function () {
+            $("#btnGet").click(function () {
+                
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/AJAXMethod",
+                    data: { name:$("#txtName").val() },
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        alert("Company: " + response.Name + " \nPrice " + response.Price);
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            });
+        });
+       
+        /*$(document).ready(function () {
             $("#btnGet").click(function () {
                 $.ajax({
                     type: "GET",
@@ -73,11 +94,10 @@
                         });
 
                         //alert(response.responseText);
-                        //alert("Price of " + response.Name + " is: " + response.Price);
+                        alert("Price of " + response.Name + " is: " + response.Price);
                     }
                     
                 });
                 return false;
-                }
+                }*/
     </script>
-    }
