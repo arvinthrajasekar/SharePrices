@@ -102,4 +102,3 @@ C:\Users\RAJASEKAR\source\repos\SharePrices\obj\Debug\netcoreapp3.1\SharePrices.
 C:\Users\RAJASEKAR\source\repos\SharePrices\obj\Debug\netcoreapp3.1\SharePrices.Views.pdb
 C:\Users\RAJASEKAR\source\repos\SharePrices\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\RAJASEKAR\source\repos\SharePrices\bin\Debug\netcoreapp3.1\libman.json
-C:\Users\RAJASEKAR\source\repos\SharePrices\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index-22.cshtml.g.cs
