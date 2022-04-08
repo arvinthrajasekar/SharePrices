@@ -14,7 +14,7 @@ namespace SharePrices.Controllers
             return View();
         }
         
-        [HttpPost]
+       [HttpPost]
         public JsonResult AJAXMethod(string name)
         {
             List<Shares> AllShares = new List<Shares>();
@@ -29,16 +29,8 @@ namespace SharePrices.Controllers
             
             return Json(result);
         }
-        /*[HttpPost]
-        public JsonResult AJAXMethod(string name)
-        {
-            Shares stock = new Shares
-            {
-                Name = name,
-                Price = 2222
-            };
-            return Json(stock);
-        }*/
+       
+        
     }
 }
 
