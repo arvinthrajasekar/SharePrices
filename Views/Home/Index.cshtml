@@ -1,0 +1,87 @@
+﻿@model SharePrices.Models.Shares
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro">
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <link href="~/Content/site.css" rel="stylesheet" />
+</head>
+<body>
+<div class="col-md-12">  
+    <div class="panel panel-primary">  
+        <div class="panel-heading">  
+            <h3 class="panel-title">Get Stock Prices</h3>  
+        </div>  
+        <div class="panel-body">  
+            <div class="form-group col-md-5">  
+                <label>Name of the Company</label>  
+                <input type="text" name="CompnayName" id="CompanyName" class="form-control" placeholder="Enter Company Name" required="" />  
+            </div>  
+             
+  
+            <div class="form-group col-md-1">  
+                <div style="float: right; display:inline-block;">  
+                    <input class="btn btn-primary" name="submitButton" id="btnGet" value="Get Price" type="button">  
+                </div>  
+            </div>  
+        </div>  
+    </div><hr />  
+    <table id="tblStocks" class="table table-bordered table-striped table-responsive table-hover">  
+        <thead>  
+            <tr>  
+                <th align="left" class="productth">Stock Name</th>  
+                <th align="left" class="productth">Stock Price</th>  
+               
+            </tr>  
+        </thead>  
+        <tbody></tbody>  
+    </table>  
+</div> 
+</body>
+</html>
+@section Scripts    
+{
+    
+    <script type="text/javascript">
+        $(function () {
+            $("#btnGet").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("AJAXMethod")',
+                    dataType: "json",
+                    data: { name: $('#txtName').val() },
+                    contentType: "application/json; charset=utf-8",
+                    
+                    success: function (response) {
+                        var items = '';  
+                        $.each(data, function (i, item) {  
+                            var rows = "<tr>"  
+                            + "<td class='prtoducttd'>" + item.Name + "</td>"  
+                            + "<td class='prtoducttd'>" + item.Price + "</td>"  
+                            + "</tr>";  
+                            $('#tblStocks tbody').append(rows);  
+                        });
+                        alert(response.responseText);
+                        //alert("Price of " + response.Name + " is: " + response.Price);
+                    },
+                    error: function (ex) {  
+                        var r = jQuery.parseJSON(response.responseText);  
+                        alert("Message: " + r.Message);  
+                        alert("StackTrace: " + r.StackTrace);  
+                        alert("ExceptionType: " + r.ExceptionType);  
+                    }
+                });
+                return false;
+                }
+    </script>
+    }
