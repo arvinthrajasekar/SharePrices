@@ -53,11 +53,11 @@
 {
     
     <script type="text/javascript">
-        $(function () {
+        $(document).ready(function () {
             $("#btnGet").click(function () {
                 $.ajax({
-                    type: "POST",
-                    url: '@Url.Action("AJAXMethod")',
+                    type: "GET",
+                    url: '/Home/AJAXMethod',
                     dataType: "json",
                     data: { name: $('#txtName').val() },
                     contentType: "application/json; charset=utf-8",
@@ -71,15 +71,11 @@
                             + "</tr>";  
                             $('#tblStocks tbody').append(rows);  
                         });
-                        alert(response.responseText);
+
+                        //alert(response.responseText);
                         //alert("Price of " + response.Name + " is: " + response.Price);
-                    },
-                    error: function (ex) {  
-                        var r = jQuery.parseJSON(response.responseText);  
-                        alert("Message: " + r.Message);  
-                        alert("StackTrace: " + r.StackTrace);  
-                        alert("ExceptionType: " + r.ExceptionType);  
                     }
+                    
                 });
                 return false;
                 }
