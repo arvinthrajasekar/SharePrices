@@ -40,8 +40,8 @@ namespace SharePrices.Controllers
                 return null;
             }
         }
-        [HttpGet]
-        public ActionResult GetALL()
+        [HttpPost]
+        public ActionResult GetALL(string dummy)
         {
             List<Shares> AllShares = new List<Shares>();
             AllShares.Add(new Shares { Name = "3M India Ltd", Price = 21145 });

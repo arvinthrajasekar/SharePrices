@@ -119,10 +119,10 @@
                 }
             });
 
-            $("#btnGetAll")on('click', function () {
+            /*$("#btnGetAll")on('click', function () {
                 debugger
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: '/Home/GetALL',
                     dataType: "json",
                     data: { '' },
@@ -130,7 +130,7 @@
                     success: function (response) {
                         debugger
                         var items = '';  
-                        $.each(data, function (i, item) {  
+                        $.each(response, function (i, item) {  
                             var rows = "<tr>"  
                             + "<td class='prtoducttd'>" + item.Name + "</td>"  
                             + "<td class='prtoducttd'>" + item.Price + "</td>"  
@@ -143,7 +143,7 @@
                 });
                 return false;
                 });
-            });
+            });*/
 
     });
 
