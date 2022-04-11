@@ -1,4 +1,6 @@
-﻿@model SharePrices.Models.Shares
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model SharePrices.Models.Shares
+
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -38,7 +40,7 @@
         <div class="panel-body">  
             <div class="form-group col-md-5">  
                 <label>Name of the Company</label>  
-                <input type="text" name="CompanyName" id="CompanyName" class="form-control" placeholder="Enter Company Name"/>  
+                <input  type="text" name="CompanyName" id="CompanyName" class="form-control" placeholder="Enter Company Name"/>  
             </div>  
              
             <div class="form-group col-md-1">  
@@ -82,6 +84,7 @@
                 debugger   
                 var span = document.getElementById("Output_Span");
                 var CompName = /^(?=.*[a-zA-Z0-9]).+$/;
+                 $('#tblStocks tbody').empty();
                 if($("#CompanyName").val()==""){
                     //document.getElementById("CompanyName").append('<span>Required</span>');
                     span.innerHTML = "";
@@ -119,21 +122,23 @@
                 }
             });
 
-            /*$("#btnGetAll")on('click', function () {
+            $("#btnGetAll").on('click', function () {
+                document.getElementById("Validation_Span").innerHTML = "";
+                 document.getElementById("Output_Span").innerHTML = "";
                 debugger
                 $.ajax({
                     type: "POST",
                     url: '/Home/GetALL',
                     dataType: "json",
-                    data: { '' },
+                    //data: { '' },
                     contentType: "application/x-www-form-urlencoded",                    
                     success: function (response) {
                         debugger
                         var items = '';  
                         $.each(response, function (i, item) {  
                             var rows = "<tr>"  
-                            + "<td class='prtoducttd'>" + item.Name + "</td>"  
-                            + "<td class='prtoducttd'>" + item.Price + "</td>"  
+                            + "<td class='prtoducttd'>" + item.name + "</td>"  
+                            + "<td class='prtoducttd'>" + item.price + "</td>"  
                             + "</tr>";  
                             $('#tblStocks tbody').append(rows);  
                         });
@@ -142,8 +147,8 @@
                     }                    
                 });
                 return false;
-                });
-            });*/
+                
+            });
 
     });
 
