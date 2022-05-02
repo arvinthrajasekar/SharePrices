@@ -87,11 +87,11 @@
 
                 debugger   
                 var span = document.getElementById("Output_Span");
-                //var CompName = /^(?=.*[a-zA-Z0-9]).+$/;
+                var CompName = /^(?=.*[a-zA-Z0-9]).+$/;
                 document.getElementById("Validation_Span").innerHTML = "";
                  document.getElementById("Output_Span").innerHTML = ""; 
                  $('#tblStocks tbody').empty();
-                /*if($("#CompanyName").val()==""){
+                if($("#CompanyName").val()==""){
                     //document.getElementById("CompanyName").append('<span>Required</span>');
                     span.innerHTML = "";
                     document.getElementById("Validation_Span").innerHTML ="Please enter the name!!";
@@ -100,17 +100,17 @@
                     span.innerHTML = "";
                     document.getElementById("Validation_Span").innerHTML ="Please enter valid name!!";
                 }
-                else{*/
+                else{
                     document.getElementById("Validation_Span").innerHTML = "";
                     $.ajax({
-                        method: "POST",
+                        method: "GET",
                         url: "/Home/GetPrice",
                         data: { 'name':$("#CompanyName").val() },
                         contentType: "application/x-www-form-urlencoded",
                         dataType: "json",
                         success: function (response) {
                            // alert(Newtonsoft.Json.JsonConvert.SerializeObject(response[0]));
-                            span.innerHTML = "Company: " + response[0].name + ", Price " + response[0].price;
+                            span.innerHTML = "Company: " + response.name + ", Price " + response.price;
                         
                             debugger
                         },
@@ -127,7 +127,7 @@
                             document.getElementById("Validation_Span").innerHTML = response.responseText;
                         }
                     });
-                //}
+                }
             });
 
             $("#btnGetAll").on('click', function () {
@@ -136,7 +136,7 @@
                  $('#tblStocks tbody').empty();
                 debugger
                 $.ajax({
-                    type: "POST",
+                    type: "GET",
                     url: '/Home/GetALL',
                     dataType: "json",
                     //data: { '' },

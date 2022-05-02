@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using SharePrices.Models;
 
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 
 namespace SharePrices.Controllers
@@ -12,13 +14,13 @@ namespace SharePrices.Controllers
     public class HomeController : Controller
     {
         private readonly ISharesRepository _sharesRepository;
-        private readonly ShareDbContext _shareDbContext;
+        //private readonly ShareDbContext _shareDbContext;
         //private readonly IMapper _mapper;
 
         public HomeController(ISharesRepository sharesRepository, ShareDbContext shareDbContext)
         {
             _sharesRepository = sharesRepository;
-            _shareDbContext = shareDbContext;
+            
 
         }
         public ActionResult Index() 
@@ -26,12 +28,17 @@ namespace SharePrices.Controllers
             return View();
         }
         
-       [HttpPost]
-        public IActionResult GetPrice(string name)
+       [HttpGet]
+        public ActionResult<Shares> GetPrice(string name)
         {
             try
             {                
-                if (!string.IsNullOrEmpty(name))
+                if (string.IsNullOrEmpty(name))
+                {
+                    ModelState.AddModelError("Name", "Name is required!!!");
+                    return BadRequest("Name is required!!!");
+                }
+                else // (string.IsNullOrEmpty(name))
                 {
                     string CompNameRegex = @"^(?=.*[a - zA - Z0 - 9]).+$";
                     Regex re = new Regex(CompNameRegex);
@@ -40,13 +47,6 @@ namespace SharePrices.Controllers
                         ModelState.AddModelError("Name", "Company Name is not valid.");
                         return BadRequest("Company Name is not valid.");
                     }
-
-                }
-                else // (string.IsNullOrEmpty(name))
-                {
-                    ModelState.AddModelError("Name", "Name is required!!!");
-                    return BadRequest("Name is required!!!");
-
                 }
                 if (ModelState.IsValid)
                 {
@@ -57,17 +57,33 @@ namespace SharePrices.Controllers
                     //AllShares.Add(new Shares { Name = "HDFC Bank", Price = 1516.75 });
                     //AllShares.Add(new Shares { Name = "Zee Entertainment", Price = 284.75 });
 
-                    var result = from r in _shareDbContext.Share
-                                 where r.Name == name
-                                 select new { Name = r.Name, Price = r.Price };
+                    /*var result = _sharesRepository.GetShares(name);
+                                 
 
                     //result = AllShares.FirstOrDefault(m=> m.Name == name);
-                    if (result.Count() == 0)
+                    if (result == null)
                     {
                         return NotFound("Company Does not exist.");
 
+                    }*/
+                    string apiURL = "http://localhost:37211/sharesapi/home/";
+
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(apiURL);
+                    client.DefaultRequestHeaders.Clear();
+
+                    HttpResponseMessage response = client.GetAsync( name ).Result;
+                    Shares result = new Shares();
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var ShareResponse = response.Content.ReadAsStringAsync().Result;
+                        result = JsonConvert.DeserializeObject<Shares>(ShareResponse);
+                        return Json(result);
+                        //var result2 =  response.Content.ReadAsAsync<Shares>();
                     }
-                    return Json(result);
+                    var OtherResponses = response.Content.ReadAsStringAsync().Result;
+
+                    return BadRequest(OtherResponses);
                 }
                 else
                 {
@@ -83,11 +99,28 @@ namespace SharePrices.Controllers
 
         
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult GetALL()
         {
-           
-            var result = _shareDbContext.Share;
+
+            //var result = _sharesRepository.AllShares();
+
+            string apiURL = "http://localhost:37211/sharesapi/home/";
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(apiURL);
+            client.DefaultRequestHeaders.Clear();
+
+            HttpResponseMessage response = client.GetAsync("").Result;
+            List<Shares> result = new List<Shares>();
+            if (response.IsSuccessStatusCode)
+            {
+                var ShareResponse = response.Content.ReadAsStringAsync().Result;
+                result = JsonConvert.DeserializeObject<List<Shares>>(ShareResponse);
+
+                //var result2 =  response.Content.ReadAsAsync<Shares>();
+            }
+
             return Json(result);
         }
        

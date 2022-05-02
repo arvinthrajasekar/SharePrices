@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SharePrices.Models
 {
@@ -14,13 +15,18 @@ namespace SharePrices.Models
             _shareDbContext = shareDbContext;
         }
 
-        public IEnumerable<Shares> AllShares
+        public IEnumerable<Shares> AllShares()
         {
-            get
-            {
+            
                 return _shareDbContext.Share;
-            }
+            
         }
 
+        public Shares GetShares(string name)
+        {
+            var res = _shareDbContext.Share.FirstOrDefault(s => s.Name == name);
+
+            return res;
+        }
     }
 }

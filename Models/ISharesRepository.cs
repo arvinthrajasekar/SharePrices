@@ -4,6 +4,8 @@ namespace SharePrices.Models
 {
     public interface ISharesRepository
     {
-        IEnumerable<Shares> AllShares { get; }
+        IEnumerable<Shares> AllShares();
+
+        Shares GetShares(string name);
     }
 }
