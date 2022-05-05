@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SharePrices.Models
 {
@@ -7,5 +8,7 @@ namespace SharePrices.Models
         IEnumerable<Shares> AllShares();
 
         Shares GetShares(string name);
+
+        Task CreateAsync(Shares shares);
     }
 }

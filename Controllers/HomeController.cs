@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 
 namespace SharePrices.Controllers
@@ -123,9 +124,50 @@ namespace SharePrices.Controllers
 
             return Json(result);
         }
-       
 
-        
+
+        [HttpPost]
+        //[Route("NewShare")]
+        public IActionResult Post(Shares shares)
+        {
+
+            //_shareDbContext.Share.Add(shares);
+            //_shareDbContext.SaveChanges();
+            if (string.IsNullOrEmpty(shares.Name))
+            {
+                return BadRequest("Name Is Required!!!");
+            }
+
+            //if (ModelState.IsValid)
+            //{
+            //    _sharesRepository.CreateAsync(shares);
+
+                /*string apiURL = "http://localhost:37211/sharesapi/home/";
+
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(apiURL);
+                client.DefaultRequestHeaders.Clear();
+
+                var myContent = JsonConvert.SerializeObject(shares);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+                var byteContent = new ByteArrayContent(buffer);
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                HttpResponseMessage response = client.PostAsync("NewShare", byteContent).Result;
+                List<Shares> result = new List<Shares>();
+                if (response.IsSuccessStatusCode)
+                {
+                    var ShareResponse = response.Content.ReadAsStringAsync().Result;
+                    result = JsonConvert.DeserializeObject<List<Shares>>(ShareResponse);
+
+                    //var result2 =  response.Content.ReadAsAsync<Shares>();
+                }*/
+            //}
+            _sharesRepository.CreateAsync(shares);
+            return Ok();
+
+        }
+
     }
 }
 

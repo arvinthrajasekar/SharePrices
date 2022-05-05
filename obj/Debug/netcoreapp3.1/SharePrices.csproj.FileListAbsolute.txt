@@ -423,3 +423,4 @@ C:\Users\RAJASEKAR\source\repos\SharePrices\bin\Debug\netcoreapp3.1\runtimes\win
 C:\Users\RAJASEKAR\source\repos\SharePrices\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\RAJASEKAR\source\repos\SharePrices\bin\Debug\netcoreapp3.1\System.Net.Http.Formatting.dll
 C:\Users\RAJASEKAR\source\repos\SharePrices\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\RAJASEKAR\source\repos\SharePrices\obj\Debug\netcoreapp3.1\Razor\Views\Home\Post.cshtml.g.cs

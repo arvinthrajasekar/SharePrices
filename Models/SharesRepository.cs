@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SharePrices.Models
 {
@@ -27,6 +28,12 @@ namespace SharePrices.Models
             var res = _shareDbContext.Share.FirstOrDefault(s => s.Name == name);
 
             return res;
+        }
+
+        public Task CreateAsync(Shares shares)
+        {
+            _shareDbContext.Add(shares);
+            return _shareDbContext.SaveChangesAsync();
         }
     }
 }

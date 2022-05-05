@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "B0KyMBdHAL7bXqD0e2S1edpzBS63kcMXjhP64s9G+SjZiMr+ugKHunfFcLi8u916UxmVwQfwtQ/Ig9chsSJ7tQ==",
+  "dgSpecHash": "IpUxZhn6NtuCOAPQbT5IcE+/oVPJMRIa+TF9CxHVOGv0LqPrpdqAKYBCsTnq7jovvdOwxhfQ+Dek9QPSb58yPg==",
   "success": true,
   "projectFilePath": "C:\\Users\\RAJASEKAR\\source\\repos\\SharePrices\\SharePrices.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\RAJASEKAR\\.nuget\\packages\\jquery\\1.8.0\\jquery.1.8.0.nupkg.sha512",
+    "C:\\Users\\RAJASEKAR\\.nuget\\packages\\jquery.validation\\1.8.0.1\\jquery.validation.1.8.0.1.nupkg.sha512",
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.8\\microsoft.aspnet.webapi.client.5.2.8.nupkg.sha512",
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.aspnetcore.mvc.razor.extensions\\3.0.0\\microsoft.aspnetcore.mvc.razor.extensions.3.0.0.nupkg.sha512",
@@ -46,6 +48,7 @@
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.identitymodel.protocols\\5.5.0\\microsoft.identitymodel.protocols.5.5.0.nupkg.sha512",
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\5.5.0\\microsoft.identitymodel.protocols.openidconnect.5.5.0.nupkg.sha512",
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.5.0\\microsoft.identitymodel.tokens.5.5.0.nupkg.sha512",
+    "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.jquery.unobtrusive.validation\\3.2.12\\microsoft.jquery.unobtrusive.validation.3.2.12.nupkg.sha512",
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\RAJASEKAR\\.nuget\\packages\\microsoft.visualstudio.web.codegeneration\\3.1.5\\microsoft.visualstudio.web.codegeneration.3.1.5.nupkg.sha512",
